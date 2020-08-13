@@ -316,14 +316,19 @@ Clic y arrastra los bordes de la ventana para moverla, o en la esquina inferior 
 	NATIVE_LANGUAGE = "Chinese (simplified)";
 	ATTACH = u8"附加到游戏";
 	LAUNCH = u8"启动游戏";
+	GAME_CONFIG = u8"配置游戏";
 	DETACH = u8"从游戏分离";
+	FORGET = u8"移除游戏";
 	ADD_HOOK = u8"添加钩子";
+	REMOVE_HOOKS = u8"移除钩子";
 	SAVE_HOOKS = u8"保存钩子";
+	SEARCH_FOR_HOOKS = u8"搜索钩子";
 	SETTINGS = u8"设置";
 	EXTENSIONS = u8"扩展";
 	SELECT_PROCESS = u8"选择进程";
 	ATTACH_INFO = u8R"(如果没看见想要附加的进程，尝试使用管理员权限运行
 也可以手动输入进程ID)";
+	SELECT_PROCESS_INFO = u8"如果手动输入游戏名，请使用绝对路径";
 	FROM_COMPUTER = u8"从计算机中选择";
 	PROCESSES = u8"进程 (*.exe)";
 	SAVE_SETTINGS = u8"保存设置";
@@ -331,10 +336,38 @@ Clic y arrastra los bordes de la ventana para moverla, o en la esquina inferior 
 (如果使用超级管理员运行，则无法工作)
 在列表中拖拽来重新排序
 使用 delete 键移除选中的扩展)";
+	ADD_EXTENSION = u8"添加扩展";
+	INVALID_EXTENSION = u8"%1 是一个无效扩展";
+	CONFIRM_EXTENSION_OVERWRITE = u8"此扩展的另一个版本已启用，是否删除并覆盖它?";
+	EXTENSION_WRITE_ERROR = u8"保存扩展失败";
 	USE_JP_LOCALE = u8"模拟日本区域设置?";
+	HOOK_SEARCH_UNSTABLE_WARNING = u8"搜索钩子的功能是不稳定的! 可能会导致你的游戏崩溃! ";
+	SEARCH_CJK = u8"搜索中文/日文/韩文";
+	SEARCH_PATTERN = u8"搜索匹配特征 (hex byte array)";
+	SEARCH_DURATION = u8"搜索持续时间 (ms)";
+	SEARCH_MODULE = u8"搜索指定模块";
+	PATTERN_OFFSET = u8"相对于特征地址的偏移值";
+	MAX_HOOK_SEARCH_RECORDS = u8"搜索结果上限";
+	MIN_ADDRESS = u8"起始地址 (hex)";
+	MAX_ADDRESS = u8"结束地址 (hex)";
+	STRING_OFFSET = u8"字符串偏移值 (hex)";
+	HOOK_SEARCH_FILTER = u8"结果必须匹配的正则表达式";
+	TEXT = u8"文本";
+	CODEPAGE = u8"代码页";
+	SEARCH_FOR_TEXT = u8"搜索指定文本";
+	START_HOOK_SEARCH = u8"开始搜索钩子";
+	SAVE_SEARCH_RESULTS = u8"保存搜索结果";
+	TEXT_FILES = u8"文本文档 (*.txt)";
+	DOUBLE_CLICK_TO_REMOVE_HOOK = u8"双击移除不需要的钩子";
+	FILTER_REPETITION = u8"过滤重复文本";
+	AUTO_ATTACH = u8"自动附加";
+	ATTACH_SAVED_ONLY = u8"自动附加 (saved only)";
+	SHOW_SYSTEM_PROCESSES = u8"显示系统进程";
 	DEFAULT_CODEPAGE = u8"默认代码页";
 	FLUSH_DELAY = u8"刷新延迟";
 	MAX_BUFFER_SIZE = u8"最大缓冲区长度";
+	MAX_HISTORY_SIZE = u8"最大缓存文本长度";
+	CONFIG_JP_LOCALE = u8"模拟日本区域启动游戏";
 	CONSOLE = L"控制台";
 	CLIPBOARD = L"剪贴板";
 	ABOUT = L"Textractor " ARCH L" v" VERSION LR"( 作者: Artikash (email: akashmozumdar@gmail.com)
@@ -345,7 +378,8 @@ Clic y arrastra los bordes de la ventana para moverla, o en la esquina inferior 
 项目主页提供基于 GPLv3 协议的源代码)";
 	UPDATE_AVAILABLE = L"有可用的更新: 请从 https://github.com/Artikash/Textractor/releases 下载";
 	ALREADY_INJECTED = L"Textractor: 已经注入";
-	NEED_32_BIT = L"Textractor: 架构不匹配: 请尝试使用 Textractor x86";
+	NEED_32_BIT = L"Textractor: 架构不匹配: 请尝试使用32位版本的Textractor";
+	NEED_64_BIT = L"Textractor: 架构不匹配: 请尝试使用64位版本的Textractor";
 	INJECT_FAILED = L"Textractor: 无法注入";
 	LAUNCH_FAILED = L"Textractor: 无法启动";
 	INVALID_CODE = L"Textractor: 无效代码";
@@ -354,8 +388,13 @@ Clic y arrastra los bordes de la ventana para moverla, o en la esquina inferior 
 	INSERTING_HOOK = u8"Textractor: 注入钩子: %s";
 	REMOVING_HOOK = u8"Textractor: 移除钩子: %s";
 	HOOK_FAILED = u8"Textractor: 钩子注入失败";
-	TOO_MANY_HOOKS = u8"Textractor: 钩子太多: 无法注入";
-	NOT_ENOUGH_TEXT = u8"Textractor: 没有足够的文本来精确搜索";
+	TOO_MANY_HOOKS = u8"Textractor: 钩子数量已达上限: 无法注入";
+	STARTING_SEARCH = u8"Textractor: 开始搜索钩子";
+	NOT_ENOUGH_TEXT = u8"Textractor: 没有足够的文本用来精确搜索";
+	HOOK_SEARCH_INITIALIZED = u8"Textractor: 搜索初始化完成, 创建了 %zd 个钩子";
+	MAKE_GAME_PROCESS_TEXT = u8"Textractor: 请点击游戏区域, 在接下来的 %d 秒内使游戏强制处理文本";
+	HOOK_SEARCH_FINISHED = u8"Textractor: 钩子搜索完毕, 找到了 %d 条结果";
+	OUT_OF_RECORDS_RETRY = u8"Textractor: 搜索结果已达上限, 如果结果不理想, 请重试(默认最大记录数增加)";
 	FUNC_MISSING = u8"Textractor: 函数不存在";
 	MODULE_MISSING = u8"Textractor: 模块不存在";
 	GARBAGE_MEMORY = u8"Textractor: 内存一直在变，读了也没用";
@@ -363,16 +402,67 @@ Clic y arrastra los bordes de la ventana para moverla, o en la esquina inferior 
 	READ_ERROR = u8"Textractor: Reader 错误 (R码可能不正确)";
 	HIJACK_ERROR = u8"Textractor: Hijack 错误";
 	COULD_NOT_FIND = u8"Textractor: 无法找到文本";
+	TRANSLATE_TO = u8"翻译为";
+	TRANSLATE_SELECTED_THREAD_ONLY = u8"仅翻译当前选择的文本线程";
+	RATE_LIMIT_ALL_THREADS = u8"限制所有文本线程的请求频率";
+	RATE_LIMIT_SELECTED_THREAD = u8"限制当前选择线程的请求频率";
+	USE_TRANS_CACHE = u8"使用缓存的翻译结果";
+	RATE_LIMIT_TOKEN_COUNT = u8"限流器令牌数";
+	RATE_LIMIT_TOKEN_RESTORE_DELAY = u8"限流器令牌重置时间 (ms)";
 	TOO_MANY_TRANS_REQUESTS = L"太多翻译请求: 拒绝生成更多";
 	TRANSLATION_ERROR = L"翻译时出错";
+	USE_PREV_SENTENCE_CONTEXT = u8"使用之前的句子作为上下文";
+	API_KEY = u8"API key";
 	EXTRA_WINDOW_INFO = u8R"(右键修改设置
 在窗口边缘点击并拖拽来移动，或在右下角点击并拖拽来调整大小)";
+	SENTENCE_TOO_BIG = u8"文本过长无法显示";
+	MAX_SENTENCE_SIZE = u8"最大文本长度";
+	TOPMOST = u8"窗口总是置顶";
+	DICTIONARY = u8"字典";
+	SHOW_ORIGINAL = u8"显示原文";
+	SHOW_ORIGINAL_INFO = u8R"(将不显示原文
+仅当此扩展置于翻译扩展之后使用时才有效)";
+	OPACITY = u8"透明度";
+	SIZE_LOCK = u8"锁定窗口大小";
 	BG_COLOR = u8"背景颜色";
 	TEXT_COLOR = u8"文本颜色";
-	TOPMOST = u8"总是位于最上层";
+	TEXT_OUTLINE = u8"文字边框";
+	OUTLINE_COLOR = u8"边框颜色";
+	OUTLINE_SIZE = u8"边框大小";
+	OUTLINE_SIZE_INFO = u8"以像素为单位的大小(建议保持在字体大小的20%以下)";
+	FONT = u8"字体";
+	LUA_INTRO = u8R"(--[[
+ProcessSentence 是Textractor每接收到一句文本时都会调用的函数。
+参数 sentence:  Textractor接收到的文本 (UTF-8)。
+参数 sentenceInfo: 用于保存文本相关信息的table。
+如果你返回一个字符串，文本将被转换为该字符串。
+如果返回 nil，该文本将不会被修改。
+此扩展使用了几个Lua解释器的副本用于保证线程安全。
+在ProcessSentence函数中对全局变量的修改可能不会生效。
+sentenceInfo有以下成员:
+"current select": 除非文本属于用户当前选择的文本线程，否则为0。
+"process id": 这句文本所属的进程id. 0 表示控制台与剪贴板线程。
+"text number": 当前选择的文本线程的id. 这是在创建文本线程时逐个递增的计数。 0 为控制台, 1 为剪贴板。
+--]]
+function ProcessSentence(sentence, sentenceInfo)
+  --在此处添加你的代码...
+end)";
+	LOAD_LUA_SCRIPT = u8"加载脚本";
+	LUA_ERROR = L"Lua 错误";
 	REGEX_FILTER = u8"正则表达式过滤器";
 	INVALID_REGEX = u8"无效的正则表达式";
 	CURRENT_FILTER = u8"当前过滤中: %1";
+	REPLACER_INSTRUCTIONS = LR"(使用"Replace"扩展时会使用此文件
+替换指令必须遵循以下格式:
+|ORIG|原文|BECOMES|替代文本|END|
+替换指令之外的所有文本都会被忽略.
+原文中的空白字符将被忽略，但是替代文本可以包含空白字符、换行符等.
+此文件必须使用Unicode字符集(UTF-16 little endian).)";
+	THREAD_LINKER = u8"线程链接器";
+	LINK = u8"链接";
+	THREAD_LINK_FROM = u8"需要链接的线程id";
+	THREAD_LINK_TO = u8"链接到的线程id";
+	HEXADECIMAL = u8"十六进制";
 #endif // SIMPLIFIED_CHINESE
 
 #ifdef RUSSIAN
@@ -635,6 +725,7 @@ Klik dan tarik pinggiran jendela untuk memindahkan, atau sudut kanan bawah untuk
 	NATIVE_LANGUAGE = "Italian";
 	ATTACH = u8"Collega al gioco";
 	LAUNCH = u8"Avvia gioco";
+	GAME_CONFIG = u8"Configura gioco";
 	DETACH = u8"Scollega dal gioco";
 	FORGET = u8"Dimentica gioco";
 	ADD_HOOK = u8"Aggiungi gancio";
@@ -649,6 +740,25 @@ Puoi anche digitare l'ID del processo)";
 	SELECT_PROCESS_INFO = u8"Se digiti manualmente il nome file del processo, si prega di utilizzare il percorso assoluto";
 	FROM_COMPUTER = u8"Seleziona dal computer";
 	PROCESSES = u8"Processi (*.exe)";
+	CODE_INFODUMP = u8R"(Digita il codice di lettura
+R{S|Q|V|M}[null_length<][codepage#]@addr
+OR
+Digita il codice gancio
+H{A|B|W|H|S|Q|V|M}[F][null_length<][N][codepage#][padding+]data_offset[*deref_offset][:split_offset[*deref_offset]]@addr[:module[:func]]
+Tutti i numeri eccetto codepage/null_lengt nell'esadecimale
+Codepage di base è 932 (Shift-JIS) ma può essere cambiato nelle impostazioni
+A/B: carattere del codepage little/big endian
+W: carattere UTF-16
+H: Due byte esadecimali
+S/Q/V/M: stringa codepage/UTF-16/UTF-8/hex 
+F: tratta le stringhe come linee di testo complete
+N: non usa il contesto
+null_lengt: lunghezza del terminatore null utilizzato per la stringa
+padding: lunghezza del data padding prima della stringa (C struct { int64_t size; char string[500]; } needs padding = 8)
+Negativi per data_offset/split_offset consulta i registri
+-4 for EAX, -8 for ECX, -C for EDX, -10 for EBX, -14 for ESP, -18 for EBP, -1C for ESI, -20 for EDI
+-C for RAX, -14 for RBX, -1C for RCX, -24 for RDX, and so on for RSP, RBP, RSI, RDI, R8-R15
+* significa puntatore di deferenziazione+deref_offset)";
 	SAVE_SETTINGS = u8"Salva impostazioni";
 	EXTEN_WINDOW_INSTRUCTIONS = u8R"(Per aggiugnere un estenzione, clicca con il tasto destro la lista estenzioni
 Alternativamente, trascina e rilascia il file estenzione dal tuo computer
@@ -660,6 +770,7 @@ Per rimuovere un estenzione, selezionala e premi rimuovi)";
 	CONFIRM_EXTENSION_OVERWRITE = u8"Un'altra versione di questa estenzione esiste già, desidera cancellarla e sovvrascriverla?";
 	EXTENSION_WRITE_ERROR = u8"Impossibile salvare l'estenzione";
 	USE_JP_LOCALE = u8"Emulare l'impostazione locale giapponese?";
+	FAILED_TO_CREATE_CONFIG_FILE = u8"Impossibile creare il file di configurazione \"%1\"";
 	HOOK_SEARCH_UNSTABLE_WARNING = u8"Cercare i ganci è instabile! Preparati a un crash del tuo gioco!";
 	SEARCH_CJK = u8"Cerca per Cinese/Giapponese/Coreano";
 	SEARCH_PATTERN = u8"Cerca schema (matrice byte in esa)";
@@ -686,6 +797,7 @@ Per rimuovere un estenzione, selezionala e premi rimuovi)";
 	FLUSH_DELAY = u8"Ritardo flush";
 	MAX_BUFFER_SIZE = u8"Massima dimensione buffer";
 	MAX_HISTORY_SIZE = u8"Massima dimensione cronologia";
+	CONFIG_JP_LOCALE = u8"Avvia con il JP locale";
 	CONSOLE = L"Console";
 	CLIPBOARD = L"Appunti";
 	ABOUT = L"Textractor " ARCH L" v" VERSION LR"( creato da me: Artikash (email: akashmozumdar@gmail.com)
@@ -714,6 +826,7 @@ esempio: Textractor -p4466 -p"My Game.exe" sta tentando di inniettare i processi
 	STARTING_SEARCH = u8"Textractor: avvia la ricerca";
 	NOT_ENOUGH_TEXT = u8"Textractor: testo insufficente per la ricerca accurata";
 	HOOK_SEARCH_INITIALIZED = u8"Textractor: ricerca inizializzata con %zd ganci";
+	MAKE_GAME_PROCESS_TEXT = u8"Textractor: clicca intorno al gioco per forzarlo nel testo del processo durante i prossimi %d secondi";
 	HOOK_SEARCH_FINISHED = u8"ricerca ganci conclusa, %d risultati trovati";
 	OUT_OF_RECORDS_RETRY = u8"registri di ricerca esauriti, riprova se i risultati sono scarsi (conto registri di base aumentato)";
 	FUNC_MISSING = u8"Textractor: funzione non presente";
@@ -721,18 +834,46 @@ esempio: Textractor -p4466 -p"My Game.exe" sta tentando di inniettare i processi
 	GARBAGE_MEMORY = u8"Textractor: memoria è in costante cambiamento, inutila la lettura";
 	SEND_ERROR = u8"Textractor: Send ERROR (probabilmente un H-code incorretto)";
 	READ_ERROR = u8"Textractor: Reader ERROR (probabilmente un R-code incorretto)";
-	HIJACK_ERROR = u8"Textractor: Hijack ERROR";
+	HIJACK_ERROR = u8"Textractor: ERRORE di Hijack";
 	COULD_NOT_FIND = u8"Textractor: impossibile trovare il testo";
-	TOO_MANY_TRANS_REQUESTS = L"Troppe richieste di traduzione: rifiuta per farne altre";
+	TRANSLATE_TO = u8"Traduci a";
+	TRANSLATE_SELECTED_THREAD_ONLY = u8"Traduci solo il thread del testo selezionato";
+	RATE_LIMIT_ALL_THREADS = u8"Rate limit tutti i thread del testo";
+	RATE_LIMIT_SELECTED_THREAD = u8"Rate limit thread del testo selezionato";
+	USE_TRANS_CACHE = u8"Utilizza la cache di traduzione";
+	RATE_LIMIT_TOKEN_COUNT = u8"Numero di token del Rate Limit";
+	RATE_LIMIT_TOKEN_RESTORE_DELAY = u8"Token del rate limit ripristina il ritardo (ms)";
+	TOO_MANY_TRANS_REQUESTS = L"Rate limit superato: rifiuta per fare altre richieste di traduzione";
 	TRANSLATION_ERROR = L"Errore durante la traduzione";
+	USE_PREV_SENTENCE_CONTEXT = u8"Utilizza la precedente sentenza come contesto";
+	API_KEY = u8"Chiave API";
 	EXTRA_WINDOW_INFO = u8R"(Tasto destro per cambiare le impostazioni
 Clicca e trascina i bordi della finestra per muoverla, oppure nell'angolo in basso a destra per ridimensionare)";
+	SENTENCE_TOO_BIG = u8"Sentenza troppo grande da visualizzare";
+	MAX_SENTENCE_SIZE = u8"Dimensione massima sentenza";
 	TOPMOST = u8"Sempre in primo piano";
 	DICTIONARY = u8"Dizionario";
+	DICTIONARY_INSTRUCTIONS = u8R"(Questo file è utilizzato solo per la funzione "Dizionario" dell'estenzione Extra Window.
+Utilizza un formato personalizzato spedifico per Textractor e non è pensato per essere critto manualmente.
+Dovresti cercare per un dizionario in questo formato online (https://github.com/Artikash/Textractor-Dictionaries/releases è un buon posto per cominciare).
+In alternativa, se sei un progammatore, puoi scrivere uno script per convertire un dizionario da un'altro formato con le informazioni sottostanti.
+Una volta che hai il dizionario, cerca qualche testo in Extra Window, posizionaci sopra. Puoi scorrere fra tutte le definizioni corrispondenti.
+Le definizioni sono formattate cosi: |TERM|Hola<<ignored|TERM|hola|TERM|Bonjour|TERM|bonjour|DEFINITION|hello|END|
+
+Il termine e la definizione può includere rich text (https://doc.qt.io/qt-5/richtext-html-subset.html) che sarà formattato a dovere.
+Le inflessioni sono formattate cosi: |ROOT|1<<noun|INFLECTS TO|(\w*)s|NAME| plural|END|
+Textractor controllerà se un termine corrisponde il regex dell'inflessione e se cosi fosse, cercherà ricorsivamente per la radice.
+La radice è generata rimpiazziando ogni numero con il regex del gruppo di cattura corrispondente (con 0 sostituito dall'intera corrispondenza).
+Questo processo può risultare facilmente in cicli infiniti e/o in stack overflow. È il tuo compito impedirlo.
+Il regex dell'inflessione utilizza la sintassi unicode QRegularExpression (https://doc.qt.io/qt-5/qregularexpression.html).
+Textractor visualizzerà la radice finale cosi come tutte le inflessioni utilizzate per ottenere quella radice.
+Tuttavia, il testo in un termine dopo << è ignorato quando è visualizzato. Questo è pensato per conservare l'informazione sulle parti del discorso.
+Questo file deve essere codificato in UTF-8.)";
 	SHOW_ORIGINAL = u8"Testo originale";
 	SHOW_ORIGINAL_INFO = u8R"(Testo originale non sarà mostrato
 Funziona solo se questa estenzione è usata direttamente dopo un'estensione di traduzione)";
-	SIZE_LOCK = u8"Size lock";
+	SIZE_LOCK = u8"Lock delle dimensione";
+	OPACITY = u8"Opacità";
 	BG_COLOR = u8"Colore dello sfondo";
 	TEXT_COLOR = u8"Colore del testo";
 	TEXT_OUTLINE = u8"Contorno del testo";
@@ -771,7 +912,7 @@ I comandi di rimpiazzo devono essere formattati cosi:
 Tutto il testo in questo file all'infuori di un comando di rimpiazzo è ignorato.
 La spaziatura nel testo_originale è ignorato, ma testo_sostituito può contenere spaziature, ritorni a capo, ecc.
 Questo file deve essere codificato in Unicode (UTF-16 Little Endian).)";
-	THREAD_LINKER = u8"Thread Linker";
+	THREAD_LINKER = u8"Collegatore di thread";
 	LINK = u8"Collegamento";
 	THREAD_LINK_FROM = u8"Numero di thread da cui collegarsi";
 	THREAD_LINK_TO = u8"Numero di thread a cui collegarsi";
@@ -1001,25 +1142,25 @@ original_text의 빈공간은 무시되지만, replacement_text는 공백과 엔
 #endif // KOREAN
 
 #ifdef FRENCH
-	const char* NATIVE_LANGUAGE = "French";
-	const char* ATTACH = u8"Attacher le jeu";
-	const char* LAUNCH = u8"Lancer le jeu";
-	const char* GAME_CONFIG = u8"Configure le jeu";
-	const char* DETACH = u8"Detacher du jeu";
-	const char* FORGET = u8"Oublier le jeu";
-	const char* ADD_HOOK = u8"Ajouter un hook";
-	const char* REMOVE_HOOKS = u8"Enlever un hook(s)";
-	const char* SAVE_HOOKS = u8"Sauvegarder un hook(s)";
-	const char* SEARCH_FOR_HOOKS = u8"Rechercher des hooks";
-	const char* SETTINGS = u8"Paramètres";
-	const char* EXTENSIONS = u8"Extensions";
-	const char* SELECT_PROCESS = u8"Selectionner le processus";
-	const char* ATTACH_INFO = u8R"(Si vous ne voyez pas le processus que vous souhaitez joindre, essayez de l'exécuter avec les droits d'administrateur
+	NATIVE_LANGUAGE = "French";
+	ATTACH = u8"Attacher le jeu";
+	LAUNCH = u8"Lancer le jeu";
+	GAME_CONFIG = u8"Configure le jeu";
+	DETACH = u8"Detacher du jeu";
+	FORGET = u8"Oublier le jeu";
+	ADD_HOOK = u8"Ajouter un hook";
+	REMOVE_HOOKS = u8"Enlever un hook(s)";
+	SAVE_HOOKS = u8"Sauvegarder un hook(s)";
+	SEARCH_FOR_HOOKS = u8"Rechercher des hooks";
+	SETTINGS = u8"Paramètres";
+	EXTENSIONS = u8"Extensions";
+	SELECT_PROCESS = u8"Selectionner le processus";
+	ATTACH_INFO = u8R"(Si vous ne voyez pas le processus que vous souhaitez joindre, essayez de l'exécuter avec les droits d'administrateur
 Vous pouvez également saisir l'ID de processus)";
-	const char* SELECT_PROCESS_INFO = u8"Si vous saisissez manuellement le nom du fichier de processus, veuillez utiliser le chemin exact";
-	const char* FROM_COMPUTER = u8"Selectionner depuis l'ordinateur";
-	const char* PROCESSES = u8"Processus (*.exe)";
-	const char* CODE_INFODUMP = u8R"(Enter read code
+	SELECT_PROCESS_INFO = u8"Si vous saisissez manuellement le nom du fichier de processus, veuillez utiliser le chemin exact";
+	FROM_COMPUTER = u8"Selectionner depuis l'ordinateur";
+	PROCESSES = u8"Processus (*.exe)";
+	CODE_INFODUMP = u8R"(Enter read code
 R{S|Q|V|M}[null_length<][codepage#]@addr
 OR
 Enter hook code
@@ -1038,48 +1179,48 @@ Negatives for data_offset/split_offset refer to registers
 -4 for EAX, -8 for ECX, -C for EDX, -10 for EBX, -14 for ESP, -18 for EBP, -1C for ESI, -20 for EDI
 -C for RAX, -14 for RBX, -1C for RCX, -24 for RDX, and so on for RSP, RBP, RSI, RDI, R8-R15
 * means dereference pointer+deref_offset)";
-	const char* SAVE_SETTINGS = u8"Sauvergarder les paramètres";
-	const char* EXTEN_WINDOW_INSTRUCTIONS = u8R"(Pour ajouter une extension, cliquez avec le bouton droit sur la liste des extensions
+	SAVE_SETTINGS = u8"Sauvergarder les paramètres";
+	EXTEN_WINDOW_INSTRUCTIONS = u8R"(Pour ajouter une extension, cliquez avec le bouton droit sur la liste des extensions
 Vous pouvez également faire glisser et déposer le fichier d'extension depuis votre ordinateur
 Pour réorganiser les extensions, faites-les glisser et déposez-les dans la liste
 (Les extensions sont utilisées de haut en bas: l'ordre est IMPORTANT)
 Pour supprimer une extension, sélectionnez-la et appuyez sur supprimer)";
-	const char* ADD_EXTENSION = u8"Ajouter une extension";
-	const char* INVALID_EXTENSION = u8"%1 C'est une extension invalide";
-	const char* CONFIRM_EXTENSION_OVERWRITE = u8"Une autre version de cette extension existe déjà. Voulez-vous la supprimer et la remplacer?";
-	const char* EXTENSION_WRITE_ERROR = u8"Impossible d'enregistrer l'extension";
-	const char* USE_JP_LOCALE = u8"Émuler les paramètres régionaux japonais?";
-	const char* FAILED_TO_CREATE_CONFIG_FILE = u8"Impossible de créer le fichier de configuration \"%1\"";
-	const char* HOOK_SEARCH_UNSTABLE_WARNING = u8"La recherche de crochets est instable! Soyez prêt à ce que votre jeu plante!";
-	const char* SEARCH_CJK = u8"Recher pour Chinois/Japonais/Coréen";
-	const char* SEARCH_PATTERN = u8"Modèle de recherche (tableau d'octets hexadécimaux)";
-	const char* SEARCH_DURATION = u8"Durée de la recherche(ms)";
-	const char* SEARCH_MODULE = u8"Recherche sans module";
-	const char* PATTERN_OFFSET = u8"Décalage par rapport au début du modèle";
-	const char* MAX_HOOK_SEARCH_RECORDS = u8"Limite du résultat de la recherche";
-	const char* MIN_ADDRESS = u8"Minimum d'adresses (hex)";
-	const char* MAX_ADDRESS = u8"Maximum d'adresses (hex)";
-	const char* STRING_OFFSET = u8"Décalage de la chaîne (hex)";
-	const char* HOOK_SEARCH_FILTER = u8"Results must match this regex";
-	const char* TEXT = u8"Texte";
-	const char* CODEPAGE = u8"Code de page";
-	const char* SEARCH_FOR_TEXT = u8"Rechercher un texte spécifique";
-	const char* START_HOOK_SEARCH = u8"Lancer la recherche de hook";
-	const char* SAVE_SEARCH_RESULTS = u8"Sauvergarder les résultats de la recherche";
-	const char* TEXT_FILES = u8"Texte (*.txt)";
-	const char* DOUBLE_CLICK_TO_REMOVE_HOOK = u8"Double click un hook pour l'enlever";
-	const char* FILTER_REPETITION = u8"Répétition de filtre";
-	const char* AUTO_ATTACH = u8"Attachement Automatique";
-	const char* ATTACH_SAVED_ONLY = u8"Attachement Automatique(Sauvergardé seulement)";
-	const char* SHOW_SYSTEM_PROCESSES = u8"Montrer les processus système";
-	const char* DEFAULT_CODEPAGE = u8"Page de code de base";
-	const char* FLUSH_DELAY = u8"Retard de vidage";
-	const char* MAX_BUFFER_SIZE = u8"Taille maximale du tampon";
-	const char* MAX_HISTORY_SIZE = u8"Taille d'historique maximale";
-	const char* CONFIG_JP_LOCALE = u8"Lancement avec les paramètres régionaux JP";
-	const wchar_t* CONSOLE = L"Console";
-	const wchar_t* CLIPBOARD = L"Presse-papier";
-	const wchar_t* ABOUT = L"Textractor " ARCH L" v" VERSION LR"( Fait par moi: Artikash (email: akashmozumdar@gmail.com)
+	ADD_EXTENSION = u8"Ajouter une extension";
+	INVALID_EXTENSION = u8"%1 C'est une extension invalide";
+	CONFIRM_EXTENSION_OVERWRITE = u8"Une autre version de cette extension existe déjà. Voulez-vous la supprimer et la remplacer?";
+	EXTENSION_WRITE_ERROR = u8"Impossible d'enregistrer l'extension";
+	USE_JP_LOCALE = u8"Émuler les paramètres régionaux japonais?";
+	FAILED_TO_CREATE_CONFIG_FILE = u8"Impossible de créer le fichier de configuration \"%1\"";
+	HOOK_SEARCH_UNSTABLE_WARNING = u8"La recherche de crochets est instable! Soyez prêt à ce que votre jeu plante!";
+	SEARCH_CJK = u8"Recher pour Chinois/Japonais/Coréen";
+	SEARCH_PATTERN = u8"Modèle de recherche (tableau d'octets hexadécimaux)";
+	SEARCH_DURATION = u8"Durée de la recherche(ms)";
+	SEARCH_MODULE = u8"Recherche sans module";
+	PATTERN_OFFSET = u8"Décalage par rapport au début du modèle";
+	MAX_HOOK_SEARCH_RECORDS = u8"Limite du résultat de la recherche";
+	MIN_ADDRESS = u8"Minimum d'adresses (hex)";
+	MAX_ADDRESS = u8"Maximum d'adresses (hex)";
+	STRING_OFFSET = u8"Décalage de la chaîne (hex)";
+	HOOK_SEARCH_FILTER = u8"Results must match this regex";
+	TEXT = u8"Texte";
+	CODEPAGE = u8"Code de page";
+	SEARCH_FOR_TEXT = u8"Rechercher un texte spécifique";
+	START_HOOK_SEARCH = u8"Lancer la recherche de hook";
+	SAVE_SEARCH_RESULTS = u8"Sauvergarder les résultats de la recherche";
+	TEXT_FILES = u8"Texte (*.txt)";
+	DOUBLE_CLICK_TO_REMOVE_HOOK = u8"Double click un hook pour l'enlever";
+	FILTER_REPETITION = u8"Répétition de filtre";
+	AUTO_ATTACH = u8"Attachement Automatique";
+	ATTACH_SAVED_ONLY = u8"Attachement Automatique(Sauvergardé seulement)";
+	SHOW_SYSTEM_PROCESSES = u8"Montrer les processus système";
+	DEFAULT_CODEPAGE = u8"Page de code de base";
+	FLUSH_DELAY = u8"Retard de vidage";
+	MAX_BUFFER_SIZE = u8"Taille maximale du tampon";
+	MAX_HISTORY_SIZE = u8"Taille d'historique maximale";
+	CONFIG_JP_LOCALE = u8"Lancement avec les paramètres régionaux JP";
+	CONSOLE = L"Console";
+	CLIPBOARD = L"Presse-papier";
+	ABOUT = L"Textractor " ARCH L" v" VERSION LR"( Fait par moi: Artikash (email: akashmozumdar@gmail.com)
 Page d'acceuil du projet: https://github.com/Artikash/Textractor
 Vidéo tuto: https://tinyurl.com/textractor-tutorial
 FAQ: https://github.com/Artikash/Textractor/wiki/FAQ
@@ -1087,52 +1228,52 @@ Veuillez me contacter pour tout problème, demande de fonctionnalité ou questio
 Vous pouvez le faire via la page d'accueil du projet (section problèmes) ou par e-mail
 Code source disponible sous GPLv3 sur la page d'accueil du projet
 Si vous aimez ce projet, parlez-en à tout le monde :))";
-	const wchar_t* CL_OPTIONS = LR"(usage: Textractor [-p{process id|"process name"}]...
+	CL_OPTIONS = LR"(usage: Textractor [-p{process id|"process name"}]...
 example: Textractor -p4466 -p"My Game.exe" tries to inject processes with id 4466 or with name My Game.exe)";
-	const wchar_t* UPDATE_AVAILABLE = L"Mise à jour disponible: téléchargez-la depuis https://github.com/Artikash/Textractor/releases";
-	const wchar_t* ALREADY_INJECTED = L"Textractor: déjà injecté";
-	const wchar_t* NEED_32_BIT = L"Textractor: incompatibilité d'architecture: seul Textractor x86 peut injecter ce processus";
-	const wchar_t* NEED_64_BIT = L"Textractor: incompatibilité d'architecture: seul Textractor x64 peut injecter ce processus";
-	const wchar_t* INJECT_FAILED = L"Textractor: ne peut pas injecter";
-	const wchar_t* LAUNCH_FAILED = L"Textractor: ne peut pas lancer";
-	const wchar_t* INVALID_CODE = L"Textractor: code invalide";
-	const wchar_t* INVALID_CODEPAGE = L"Textractor: impossible de convertir le texte (page de code non valide?)";
-	const char* PIPE_CONNECTED = u8"Textractor: tuyau connecté";
-	const char* INSERTING_HOOK = u8"Textractor: insertion du hook: %s";
-	const char* REMOVING_HOOK = u8"Textractor: enlève le hook: %s";
-	const char* HOOK_FAILED = u8"Textractor: n'a pas réussi à insérer un hook";
-	const char* TOO_MANY_HOOKS = u8"Textractor: trop de hooks: impossible d'insérer";
-	const char* STARTING_SEARCH = u8"Textractor: démarrage de la recherche";
-	const char* NOT_ENOUGH_TEXT = u8"Textractor: pas assez de texte pour effectuer une recherche précise";
-	const char* HOOK_SEARCH_INITIALIZED = u8"Textractor: la recherche a été initialisé avec %zd hooks";
-	const char* MAKE_GAME_PROCESS_TEXT = u8"Textractor: veuillez cliquer dans le jeu pour le forcer à traiter le texte lors de la prochaine %d seconds";
-	const char* HOOK_SEARCH_FINISHED = u8"Textractor: la recherche du hook est finie, %d results found";
-	const char* OUT_OF_RECORDS_RETRY = u8"Textractor: hors des enregistrements de recherche, veuillez réessayer si les résultats sont médiocres (le nombre d'enregistrements par défaut a augmenté)";
-	const char* FUNC_MISSING = u8"Textractor: function non présente";
-	const char* MODULE_MISSING = u8"Textractor: module non présente";
-	const char* GARBAGE_MEMORY = u8"Textractor: mémoire en constante évolution, inutile à lire";
-	const char* SEND_ERROR = u8"Textractor: envoyer ERREUR (comme un H-code instable/incorrect)";
-	const char* READ_ERROR = u8"Textractor: Lire ERREUR (comme un R-code incorrect)";
-	const char* HIJACK_ERROR = u8"Textractor: ERREUR Hijack";
-	const char* COULD_NOT_FIND = u8"Textractor: ne peut pas trouver le texte";
-	const char* TRANSLATE_TO = u8"Traduire à";
-	const char* TRANSLATE_SELECTED_THREAD_ONLY = u8"Traduire uniquement le thread sélectionné";
-	const char* RATE_LIMIT_ALL_THREADS = u8"Taux limite tout les threads de texte";
-	const char* RATE_LIMIT_SELECTED_THREAD = u8"Limite de débit du thread de texte sélectionné";
-	const char* USE_TRANS_CACHE = u8"Utiliser le cache de traduction";
-	const char* RATE_LIMIT_TOKEN_COUNT = u8"Nombre de tokens du limiteur de débit";
-	const char* RATE_LIMIT_TOKEN_RESTORE_DELAY = u8"Délai de restauration du token du limiteur de débit (ms)";
-	const wchar_t* TOO_MANY_TRANS_REQUESTS = L"Limite de taux dépassée: refus de faire plus de demande de traduction";
-	const wchar_t* TRANSLATION_ERROR = L"Une erreur est survenue pendant la traduction";
-	const char* USE_PREV_SENTENCE_CONTEXT = u8"Utiliser la phrase précédente comme contexte";
-	const char* API_KEY = u8"API key";
-	const char* EXTRA_WINDOW_INFO = u8R"(Clic droit pour modifier les paramètres
+	UPDATE_AVAILABLE = L"Mise à jour disponible: téléchargez-la depuis https://github.com/Artikash/Textractor/releases";
+	ALREADY_INJECTED = L"Textractor: déjà injecté";
+	NEED_32_BIT = L"Textractor: incompatibilité d'architecture: seul Textractor x86 peut injecter ce processus";
+	NEED_64_BIT = L"Textractor: incompatibilité d'architecture: seul Textractor x64 peut injecter ce processus";
+	INJECT_FAILED = L"Textractor: ne peut pas injecter";
+	LAUNCH_FAILED = L"Textractor: ne peut pas lancer";
+	INVALID_CODE = L"Textractor: code invalide";
+	INVALID_CODEPAGE = L"Textractor: impossible de convertir le texte (page de code non valide?)";
+	PIPE_CONNECTED = u8"Textractor: tuyau connecté";
+	INSERTING_HOOK = u8"Textractor: insertion du hook: %s";
+	REMOVING_HOOK = u8"Textractor: enlève le hook: %s";
+	HOOK_FAILED = u8"Textractor: n'a pas réussi à insérer un hook";
+	TOO_MANY_HOOKS = u8"Textractor: trop de hooks: impossible d'insérer";
+	STARTING_SEARCH = u8"Textractor: démarrage de la recherche";
+	NOT_ENOUGH_TEXT = u8"Textractor: pas assez de texte pour effectuer une recherche précise";
+	HOOK_SEARCH_INITIALIZED = u8"Textractor: la recherche a été initialisé avec %zd hooks";
+	MAKE_GAME_PROCESS_TEXT = u8"Textractor: veuillez cliquer dans le jeu pour le forcer à traiter le texte lors de la prochaine %d seconds";
+	HOOK_SEARCH_FINISHED = u8"Textractor: la recherche du hook est finie, %d results found";
+	OUT_OF_RECORDS_RETRY = u8"Textractor: hors des enregistrements de recherche, veuillez réessayer si les résultats sont médiocres (le nombre d'enregistrements par défaut a augmenté)";
+	FUNC_MISSING = u8"Textractor: function non présente";
+	MODULE_MISSING = u8"Textractor: module non présente";
+	GARBAGE_MEMORY = u8"Textractor: mémoire en constante évolution, inutile à lire";
+	SEND_ERROR = u8"Textractor: envoyer ERREUR (comme un H-code instable/incorrect)";
+	READ_ERROR = u8"Textractor: Lire ERREUR (comme un R-code incorrect)";
+	HIJACK_ERROR = u8"Textractor: ERREUR Hijack";
+	COULD_NOT_FIND = u8"Textractor: ne peut pas trouver le texte";
+	TRANSLATE_TO = u8"Traduire à";
+	TRANSLATE_SELECTED_THREAD_ONLY = u8"Traduire uniquement le thread sélectionné";
+	RATE_LIMIT_ALL_THREADS = u8"Taux limite tout les threads de texte";
+	RATE_LIMIT_SELECTED_THREAD = u8"Limite de débit du thread de texte sélectionné";
+	USE_TRANS_CACHE = u8"Utiliser le cache de traduction";
+	RATE_LIMIT_TOKEN_COUNT = u8"Nombre de tokens du limiteur de débit";
+	RATE_LIMIT_TOKEN_RESTORE_DELAY = u8"Délai de restauration du token du limiteur de débit (ms)";
+	TOO_MANY_TRANS_REQUESTS = L"Limite de taux dépassée: refus de faire plus de demande de traduction";
+	TRANSLATION_ERROR = L"Une erreur est survenue pendant la traduction";
+	USE_PREV_SENTENCE_CONTEXT = u8"Utiliser la phrase précédente comme contexte";
+	API_KEY = u8"API key";
+	EXTRA_WINDOW_INFO = u8R"(Clic droit pour modifier les paramètres
 Cliquez et faites glisser sur les bords de la fenêtre pour vous déplacer ou dans le coin inférieur droit pour redimensionner)";
-	const char* SENTENCE_TOO_BIG = u8"Phrase trop grande pour être affichée";
-	const char* MAX_SENTENCE_SIZE = u8"Taille maximale de la phrase";
-	const char* TOPMOST = u8"Toujours au dessus";
-	const char* DICTIONARY = u8"Dictionnaire";
-	const char* DICTIONARY_INSTRUCTIONS = u8R"(Ce fichier est utilisé uniquement pour la fonction "Dictionnaire" de l'extension Extra Window.
+	SENTENCE_TOO_BIG = u8"Phrase trop grande pour être affichée";
+	MAX_SENTENCE_SIZE = u8"Taille maximale de la phrase";
+	TOPMOST = u8"Toujours au dessus";
+	DICTIONARY = u8"Dictionnaire";
+	DICTIONARY_INSTRUCTIONS = u8R"(Ce fichier est utilisé uniquement pour la fonction "Dictionnaire" de l'extension Extra Window.
 Il utilise un format personnalisé spécifique à Textractor et n'est pas destiné à être écrit manuellement.
 Vous devriez rechercher un dictionnaire dans ce format en ligne (https://github.com/Artikash/Textractor-Dictionaries/releases est un bon point de dépar).
 Alternativement, si vous êtes programmeur, vous pouvez écrire un script pour convertir un dictionnaire d'un autre format avec les informations ci-dessous.
@@ -1147,19 +1288,19 @@ L'expression regex d'inflexion utilise la syntaxe unicode QRegularExpression (ht
 Textractor affichera le terme racine final ainsi que toutes les inflexions utilisées pour arriver à ce terme racine.
 Cependant, le texte d'un terme après << est ignoré lors de l'affichage. Ceci est destiné à stocker des informations sur une partie de la parole.
 Ce fichier doit être encodé en UTF-8.)";
-	const char* SHOW_ORIGINAL = u8"Texte Original";
-	const char* SHOW_ORIGINAL_INFO = u8R"(Le texte d'origine ne sera pas affiché
+	SHOW_ORIGINAL = u8"Texte Original";
+	SHOW_ORIGINAL_INFO = u8R"(Le texte d'origine ne sera pas affiché
 Fonctionne uniquement si cette extension est utilisée directement après une extension de traduction)";
-	const char* SIZE_LOCK = u8"Verouiller la taille";
-	const char* OPACITY = u8"Opacité";
-	const char* BG_COLOR = u8"COuleur d'arrière-plan";
-	const char* TEXT_COLOR = u8"COuleur du texte";
-	const char* TEXT_OUTLINE = u8"Contour du texte";
-	const char* OUTLINE_COLOR = u8"Couleur du contour";
-	const char* OUTLINE_SIZE = u8"Taille du contour";
-	const char* OUTLINE_SIZE_INFO = u8"Taille en pixels (recommandé de rester en dessous de 20% de la taille de la police)";
-	const char* FONT = u8"Police";
-	const char* LUA_INTRO = u8R"(--[[
+	SIZE_LOCK = u8"Verouiller la taille";
+	OPACITY = u8"Opacité";
+	BG_COLOR = u8"COuleur d'arrière-plan";
+	TEXT_COLOR = u8"COuleur du texte";
+	TEXT_OUTLINE = u8"Contour du texte";
+	OUTLINE_COLOR = u8"Couleur du contour";
+	OUTLINE_SIZE = u8"Taille du contour";
+	OUTLINE_SIZE_INFO = u8"Taille en pixels (recommandé de rester en dessous de 20% de la taille de la police)";
+	FONT = u8"Police";
+	LUA_INTRO = u8R"(--[[
 ProcessSentence est appelée chaque fois que Textractor reçoit une phrase de texte.
 Phrase param: phrase reçue par Textractor (UTF-8).
 Param sentenceInfo: tableau d'informations diverses sur la phrase.
@@ -1175,23 +1316,23 @@ Properties in sentenceInfo:
 function ProcessSentence(sentence, sentenceInfo)
   --Your code here...
 end)";
-	const char* LOAD_LUA_SCRIPT = u8"Charger le script";
-	const wchar_t* LUA_ERROR = L"Erreur Lua: %s";
-	const char* REGEX_FILTER = u8"Filtre regex";
-	const char* INVALID_REGEX = u8"Regex invalide";
-	const char* CURRENT_FILTER = u8"En train de filtrer: %1";
-	const wchar_t* REPLACER_INSTRUCTIONS = LR"(Ce fichier ne fait rien lorsque l'extension "Replacer" est utilisée.
+	LOAD_LUA_SCRIPT = u8"Charger le script";
+	LUA_ERROR = L"Erreur Lua: %s";
+	REGEX_FILTER = u8"Filtre regex";
+	INVALID_REGEX = u8"Regex invalide";
+	CURRENT_FILTER = u8"En train de filtrer: %1";
+	REPLACER_INSTRUCTIONS = LR"(Ce fichier ne fait rien lorsque l'extension "Replacer" est utilisée.
 Les commandes de remplacement doivent être formatées comme:
 |ORIG|original_text|BECOMES|replacement_text|END|
 Tout le texte de ce fichier en dehors d'une commande de remplacement est ignoré.
 Un caret (^) agit comme un caractère générique qui correspond à tout autre caractère unique.
 Les espaces dans original_text sont ignorés, mais remplacement_text peut contenir des espaces, des nouvelles lignes, etc.
 Ce fichier doit être encodé en Unicode (UTF-16 Little Endian).)";
-	const char* THREAD_LINKER = u8"Lien du thread";
-	const char* LINK = u8"Lien";
-	const char* THREAD_LINK_FROM = u8"Nombre du thread du lien depuis";
-	const char* THREAD_LINK_TO = u8"Nombre du thread du lien a";
-	const char* HEXADECIMAL = u8"Hexadecimal";
+	THREAD_LINKER = u8"Lien du thread";
+	LINK = u8"Lien";
+	THREAD_LINK_FROM = u8"Nombre du thread du lien depuis";
+	THREAD_LINK_TO = u8"Nombre du thread du lien a";
+	HEXADECIMAL = u8"Hexadecimal";
 #endif // FRENCH
 
 	return 0;
